@@ -1,0 +1,2 @@
+# QGame
+Simple Quantum Game.
