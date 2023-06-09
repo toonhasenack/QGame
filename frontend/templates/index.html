@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0"
+    />
+    <title>QGame - Fill in your name</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='styles.css')}}"
+    />
+  </head>
+
+  <body>
+    <div class="banner">
+      <div style="width: 90px; height: 100%; display: inline-block"></div>
+      <div style="flex-grow: 1; height: 100%; display: inline-block">
+        <h1 class="banner_text">Quantum Tic Tac Toe</h1>
+      </div>
+    </div>
+
+    <div style="width: 100vw; height: 10px"></div>
+    <div class="form">
+      <form method="POST" action="/game">
+        <label for="name">First name:</label>
+        <input type="text" name="name" id="name" />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+</html>
