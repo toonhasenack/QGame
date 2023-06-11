@@ -45,3 +45,18 @@ input {
     height: 100%; 
     display: inline-block"
 }
+
+.game {
+    width: 49vw;
+    height: 25vw;
+    display: inline-block;
+}
+
+.game_table {
+    color: white;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
