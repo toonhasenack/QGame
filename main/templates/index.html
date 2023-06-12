@@ -7,10 +7,8 @@
       content="width=device-width, height=device-height, initial-scale=1.0"
     />
     <title>QGame - Fill in your name</title>
-    <link
-      rel="stylesheet"
-      href="{{url_for('static', filename='styles.css')}}"
-    />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
   </head>
   <body>
     <div class="banner">
@@ -22,7 +20,7 @@
 
     <div style="width: 100vw; height: 10px"></div>
     <div class="form">
-      <form method="POST" action="/game">
+      <form method="POST" action="/main/game/">
         <label for="name">First name:</label>
         <input type="text" name="name" id="name" />
         <input type="submit" value="Submit" />
