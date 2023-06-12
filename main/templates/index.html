@@ -20,10 +20,9 @@
 
     <div style="width: 100vw; height: 10px"></div>
     <div class="form">
-      <form method="POST" action="/main/game/">
-        <label for="name">First name:</label>
-        <input type="text" name="name" id="name" />
-        <input type="submit" value="Submit" />
+      <form method="POST">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit">Start Game</button>
       </form>
     </div>
   </body>

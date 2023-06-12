@@ -1,10 +1,11 @@
 from django.db import models
+from QGame import *
 
-# Create your models here.
-from django.db import models
+
+class Player(models.Model):
+    name = models.CharField(max_length=100)
 
 
 class Game(models.Model):
-    title = models.CharField(max_length=100)
-    author = models.CharField(max_length=50)
-    publication_date = models.DateField()
+    def __init__(self):
+        self.game = QGame()
