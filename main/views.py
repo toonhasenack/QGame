@@ -46,7 +46,7 @@ def game_page(request, player_id):
     strings = [r"$|\uparrow\rangle$", r"$|\downarrow\rangle$"]
     QG = get_QG(player)
     if QG.steps == 0:
-        player.message = f"It is the turn of {names[player.player]} ({strings[player.player]}) to entangle two states."
+        player.message = f"It is the turn of {names[player.player]} {strings[player.player]} to entangle two states."
 
     a = {'11': r"$|\psi_{11}\rangle$", '12': r"$|\psi_{12}\rangle$", '13': r"$|\psi_{13}\rangle$",
          '21': r"$|\psi_{21}\rangle$", '22': r"$|\psi_{22}\rangle$", '23': r"$|\psi_{23}\rangle$",
