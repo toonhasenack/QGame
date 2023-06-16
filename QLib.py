@@ -28,11 +28,13 @@ class QGame:
         val = np.random.binomial(1, 0.5)
         state1 = 2 * val - 1
         state2 = -state1
+
         return state1, state2
 
     def step(self, coords):
-        x1, x2 = coords[0]
-        y1, y2 = coords[1]
+
+        x1, y1 = coords[0]
+        x2, y2 = coords[1]
 
         proceed = (
             all(coord >= 0 for coord in coords[0])
@@ -42,12 +44,15 @@ class QGame:
         )
 
         if not self.repeat and proceed:
-            proceed = (self.grids[0][x1, y1] == 0) and (self.grids[1][y1, y2] == 0)
+            print(self.grids[0][x1, y1], self.grids[1][x2, y2])
+            proceed = (self.grids[0][x1, y1] == 0) and (
+                self.grids[1][x2, y2] == 0)
 
         if proceed:
             s1, s2 = self.get_sstate()
             self.grids[0][x1, y1] = (self.player * 2 - 1) * s1
             self.grids[1][x2, y2] = (self.player * 2 - 1) * s2
+            self.player = (self.player + 1) % 2
             self.steps += 1
             return True
 
@@ -68,22 +73,25 @@ class QGame:
                 ):
                     winner[i] = -1
 
-        if ((self.winner[0] == 1) and (self.winner[1] != -1)) or (
-            (self.winner[0] != -1) and (self.winner[1] == 1)
+        if ((winner[0] == 1) and (winner[1] != -1)) or (
+            (winner[0] != -1) and (winner[1] == 1)
         ):
-            self.winner = "Player 1"
+            # player 1 has won
+            self.winner = 1
 
-        elif ((self.winner[0] == -1) and (self.winner[1] != 1)) or (
-            (self.winner[0] != 1) and (self.winner[1] == -1)
+        elif ((winner[0] == -1) and (winner[1] != 1)) or (
+            (winner[0] != 1) and (winner[1] == -1)
         ):
-            self.winner = "Player 2"
+            # player 2 has won
+            self.winner = 2
 
         elif (
-            ((self.winner[0] == 1) and (self.winner[1] == -1))
-            or ((self.winner[0] == -1) and (self.winner[1] == 1))
+            ((winner[0] == 1) and (winner[1] == -1))
+            or ((winner[0] == -1) and (winner[1] == 1))
             or (self.steps == self.size ** 2)
         ):
-            self.winner = "Tie"
+            # it is a tie
+            self.winner = 3
 
         else:
             pass

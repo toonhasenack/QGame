@@ -13,6 +13,16 @@
       type="text/javascript"
       src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
     ></script>
+    <!--<script type="text/javascript">
+      let url = `ws://${window.location.host}/ws/socket-server/`;
+
+      const chatSocket = new WebSocket(url);
+
+      chatSocket.onmessage = function (e) {
+        let data = JSON.parse(e.data);
+        console.log("Data:", data);
+      };
+    </script> -->
   </head>
   <body>
     <div class="banner">
@@ -39,103 +49,91 @@
         <h1 class="banner_text">Quantum Tic Tac Toe</h1>
       </div>
     </div>
+    <div style="width: 90px; height: 100%; display: inline-block"></div>
+    <div class="banner">
+      <div class="typewriter">
+        <h1>{{message}}</h1>
+      </div>
+    </div>
     <div class="game">
       <table border="1" class="game_table">
         <tbody>
           <tr>
             <td>
-              <button
-                class="button1"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\psi_{11}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button1" type="submit" name="btn111">
+                  <p class="table_text">{{a.11}}</p>
+                </button>
+              </form>
             </td>
             <td>
-              <button
-                class="button1"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\psi_{12}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button1" type="submit" name="btn112">
+                  <p class="table_text">{{a.12}}</p>
+                </button>
+              </form>
             </td>
             <td>
-              <button
-                class="button1"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\psi_{13}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button1" type="submit" name="btn113">
+                  <p class="table_text">{{a.13}}</p>
+                </button>
+              </form>
             </td>
           </tr>
           <tr>
             <td>
-              <button
-                class="button1"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\psi_{21}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button1" type="submit" name="btn121">
+                  <p class="table_text">{{a.21}}</p>
+                </button>
+              </form>
             </td>
             <td>
-              <button
-                class="button1"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\psi_{22}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button1" type="submit" name="btn122">
+                  <p class="table_text">{{a.22}}</p>
+                </button>
+              </form>
             </td>
             <td>
-              <button
-                class="button1"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\psi_{23}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button1" type="submit" name="btn123">
+                  <p class="table_text">{{a.23}}</p>
+                </button>
+              </form>
             </td>
           </tr>
           <tr>
             <td>
-              <button
-                class="button1"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\psi_{31}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button1" type="submit" name="btn131">
+                  <p class="table_text">{{a.31}}</p>
+                </button>
+              </form>
             </td>
             <td>
-              <button
-                class="button1"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\psi_{32}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button1" type="submit" name="btn132">
+                  <p class="table_text">{{a.32}}</p>
+                </button>
+              </form>
             </td>
             <td>
-              <button
-                class="button1"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\psi_{33}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button1" type="submit" name="btn133">
+                  <p class="table_text">{{a.33}}</p>
+                </button>
+              </form>
             </td>
           </tr>
         </tbody>
@@ -146,98 +144,80 @@
         <tbody>
           <tr>
             <td>
-              <button
-                class="button2"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\varphi_{11}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button2" type="submit" name="btn211">
+                  <p class="table_text">{{b.11}}</p>
+                </button>
+              </form>
             </td>
             <td>
-              <button
-                class="button2"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\varphi_{12}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button2" type="submit" name="btn212">
+                  <p class="table_text">{{b.12}}</p>
+                </button>
+              </form>
             </td>
             <td>
-              <button
-                class="button2"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\varphi_{13}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button2" type="submit" name="btn213">
+                  <p class="table_text">{{b.13}}</p>
+                </button>
+              </form>
             </td>
           </tr>
           <tr>
             <td>
-              <button
-                class="button2"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\varphi_{21}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button2" type="submit" name="btn221">
+                  <p class="table_text">{{b.21}}</p>
+                </button>
+              </form>
             </td>
             <td>
-              <button
-                class="button2"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\varphi_{22}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button2" type="submit" name="btn222">
+                  <p class="table_text">{{b.22}}</p>
+                </button>
+              </form>
             </td>
             <td>
-              <button
-                class="button2"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\varphi_{23}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button2" type="submit" name="btn223">
+                  <p class="table_text">{{b.23}}</p>
+                </button>
+              </form>
             </td>
           </tr>
           <tr>
             <td>
-              <button
-                class="button2"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\varphi_{31}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button2" type="submit" name="btn231">
+                  <p class="table_text">{{b.31}}</p>
+                </button>
+              </form>
             </td>
             <td>
-              <button
-                class="button2"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\varphi_{32}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button2" type="submit" name="btn232">
+                  <p class="table_text">{{b.32}}</p>
+                </button>
+              </form>
             </td>
             <td>
-              <button
-                class="button2"
-                type="submit"
-                value="{{btn11}}"
-                name="btn11"
-              >
-                <p class="table_text">$|\varphi_{33}\rangle$</p>
-              </button>
+              <form method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button class="button2" type="submit" name="btn233">
+                  <p class="table_text">{{b.33}}</p>
+                </button>
+              </form>
             </td>
           </tr>
         </tbody>
