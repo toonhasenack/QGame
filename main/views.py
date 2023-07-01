@@ -5,6 +5,7 @@ import numpy as np
 import pickle
 import base64
 from QLib import *
+from LLib import *
 
 # Create your views here.
 
@@ -46,7 +47,7 @@ def game_page(request, player_id):
     strings = [r"$|\uparrow\rangle$", r"$|\downarrow\rangle$"]
     QG = get_QG(player)
     if QG.steps == 0:
-        player.message = f"It is the turn of {names[player.player]} {strings[player.player]} to entangle two states."
+        player.message = f"It is the turn of <span class = 'p{player.player}'>{names[player.player]}</span> {strings[player.player]} to entangle two states."
 
     a = {'11': r"$|\psi_{11}\rangle$", '12': r"$|\psi_{12}\rangle$", '13': r"$|\psi_{13}\rangle$",
          '21': r"$|\psi_{21}\rangle$", '22': r"$|\psi_{22}\rangle$", '23': r"$|\psi_{23}\rangle$",
@@ -56,6 +57,15 @@ def game_page(request, player_id):
          '21': r"$|\varphi_{21}\rangle$", '22': r"$|\varphi_{22}\rangle$", '23': r"$|\varphi_{23}\rangle$",
          '31': r"$|\varphi_{31}\rangle$", '32': r"$|\varphi_{32}\rangle$", '33': r"$|\varphi_{33}\rangle$"}
 
+    c = {'11': 'button0', '12': 'button0', '13': 'button0',
+         '21': 'button0', '22': 'button0', '23': 'button0',
+         '31': 'button0', '32': 'button0', '33': 'button0'}
+
+    d = {'11': 'button0', '12': 'button0', '13': 'button0',
+         '21': 'button0', '22': 'button0', '23': 'button0',
+         '31': 'button0', '32': 'button0', '33': 'button0'}
+
+    QG.check()
     if request.method == 'POST' and not QG.winner:
         keys = request.POST.keys()
         idf = [key for key in keys][1]
@@ -81,14 +91,14 @@ def game_page(request, player_id):
                 set_QG(player, QG)
                 if QG.winner:
                     if QG.winner == 1 or QG.winner == 2:
-                        player.message = f"The winner is {names[QG.winner - 1]} {strings[QG.winner - 1]}!"
+                        player.message = f"The winner is <span class = 'p{QG.winner-1}'>{names[QG.winner-1]}</span> {strings[QG.winner - 1]}!"
                     else:
                         player.message = f"It is a tie!"
                 else:
-                    player.message = f"It is turn of {names[player.player]} {strings[player.player]} to entangle two states."
+                    player.message = f"It is the turn of <span class = 'p{player.player}'>{names[player.player]}</span> {strings[player.player]} to entangle two states."
 
             else:
-                player.message = f"Please choose two valid options, {names[player.player]}."
+                player.message = f"Please choose two valid options, <span class = 'p{player.player}'>{names[player.player]}</span>."
 
             player.left = False
             player.right = False
@@ -96,7 +106,7 @@ def game_page(request, player_id):
 
         else:
             sides = ["right", "left"]
-            player.message = f"Please make your second choice on the {sides[int(idf[3])-1]} playing field, {names[player.player]}"
+            player.message = f"Please make your second choice on the {sides[int(idf[3])-1]} playing field, <span class = 'p{player.player}'>{names[player.player]}</span>."
             player.save()
 
     for i in range(3):
@@ -105,19 +115,24 @@ def game_page(request, player_id):
             r_state = QG.grids[1][i, j]
             if l_state == 1:
                 a[str(i + 1) + str(j + 1)] = r"$|\uparrow\rangle$"
+                c[str(i + 1) + str(j + 1)] = "button1"
             elif l_state == -1:
                 a[str(i + 1) + str(j + 1)] = r"$|\downarrow\rangle$"
+                c[str(i + 1) + str(j + 1)] = "button2"
             if r_state == 1:
                 b[str(i + 1) + str(j + 1)] = r"$|\uparrow\rangle$"
+                d[str(i + 1) + str(j + 1)] = "button1"
             elif r_state == -1:
                 b[str(i + 1) + str(j + 1)] = r"$|\downarrow\rangle$"
+                d[str(i + 1) + str(j + 1)] = "button2"
 
-    return render(request, 'game.html', {'message': player.message, 'a': a, 'b': b})
+    return render(request, 'game.html', {'message': player.message, 'a': a, 'b': b, 'c': c, 'd': d})
 
 
-def winner_page(request, player_id):
-    player = get_object_or_404(Player, pk=player_id)
-    QG = get_QG(player)
-    QG.check()
-
-    return render(request, 'winner.html', {'winner': QG.winner})
+def leaderboard_page(request):
+    try:
+        L = Leaderboard()
+        L.update()
+        return render(request, 'leaderboard.html')
+    except:
+        return render(request, 'leaderboard.html')

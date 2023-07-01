@@ -33,12 +33,14 @@
         Toon
       </p>
     </div>
-    <div style="width: 100vw; height: 10px"></div>
-    <div class="form">
-      <form method="POST">
-        {% csrf_token %} {{ form.as_p }}
-        <button class="index_submit" type="submit">Start Game</button>
-      </form>
+    <div style="width: 100vw; height: 10px; overflow: hidden"></div>
+    <div style="width: 100vw">
+      <div class="form">
+        <form method="POST">
+          {% csrf_token %} {{ form.as_p }}
+          <button class="index_submit" type="submit">Start Game</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>

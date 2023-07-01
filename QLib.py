@@ -64,32 +64,26 @@ class QGame:
         for i in range(2):
             grid = self.grids[i]
             for j in range(self.size):
-                if (np.sum(grid[j, :]) == self.size) or (
-                    np.sum(grid[:, j]) == self.size
-                ):
+                if (np.sum(grid[j, :]) == self.size) or (np.sum(grid[:, j]) == self.size):
                     winner[i] = 1
-                elif (np.sum(grid[j, :]) == -self.size) or (
-                    np.sum(grid[:, j]) == -self.size
-                ):
+                elif (np.sum(grid[j, :]) == -self.size) or (np.sum(grid[:, j]) == -self.size):
                     winner[i] = -1
+            if (grid[0, 0] + grid[1, 1] + grid[2, 2] == self.size) or (grid[2, 0] + grid[1, 1] + grid[0, 2] == self.size):
+                winner[i] = 1
+            elif (grid[0, 0] + grid[1, 1] + grid[2, 2] == -self.size) or (grid[2, 0] + grid[1, 1] + grid[0, 2] == -self.size):
+                winner[i] = -1
 
-        if ((winner[0] == 1) and (winner[1] != -1)) or (
-            (winner[0] != -1) and (winner[1] == 1)
-        ):
+        if ((winner[0] == 1) and (winner[1] != -1)) or ((winner[0] != -1) and (winner[1] == 1)):
             # player 1 has won
             self.winner = 1
 
-        elif ((winner[0] == -1) and (winner[1] != 1)) or (
-            (winner[0] != 1) and (winner[1] == -1)
-        ):
+        elif ((winner[0] == -1) and (winner[1] != 1)) or ((winner[0] != 1) and (winner[1] == -1)):
             # player 2 has won
             self.winner = 2
 
         elif (
-            ((winner[0] == 1) and (winner[1] == -1))
-            or ((winner[0] == -1) and (winner[1] == 1))
-            or (self.steps == self.size ** 2)
-        ):
+            ((winner[0] == 1) and (winner[1] == -1)) or ((winner[0] == -1)
+                                                         and (winner[1] == 1)) or (self.steps == self.size ** 2)):
             # it is a tie
             self.winner = 3
 
