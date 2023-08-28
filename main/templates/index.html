@@ -11,27 +11,11 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
   </head>
   <body>
-    <div class="banner">
-      <div style="flex-grow: 1; height: 100%; display: inline-block">
-        <h1 class="banner_text">Quantum Tic Tac Toe</h1>
-      </div>
-    </div>
     <div style="width: 90px; height: 100%; display: inline-block"></div>
-    <div class="text">
-      <p style="padding-left: 1vw; font-size: 20px">
-        Welcome, <br />
-        <br />
-        Please fill in your names below to start playing Quantum Tic Tac Toe.
-        The idea is to entangle two simultaneous games of tic tac toe and try to
-        win on either of the boards. <br />
-        You have to pay attention, however, because you only know with 50%
-        certainty which state will be picked. <br />
-        So choose carefully such that your opponent does not win because of your
-        move! <br />
-        <br />
-        Have fun, <br />
-        Toon
-      </p>
+    <div style="text-align: center; overflow: hidden">
+      <video width="960" height="520" autoplay loop>
+        <source src="{% static 'QGame_explained.mp4' %}" type=video/mp4>
+      </video>
     </div>
     <div style="width: 100vw; height: 10px; overflow: hidden"></div>
     <div style="width: 100vw">
