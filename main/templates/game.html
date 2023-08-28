@@ -11,7 +11,9 @@
     </script>
     <script
       type="text/javascript"
-      src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+      src="{% static 'node_modules/mathjax/MathJax.js' %}?config=TeX-AMS-MML_HTMLorMML"
+      id="MathJax-script"
+      async
     ></script>
     <!--<script type="text/javascript">
       let url = `ws://${window.location.host}/ws/socket-server/`;

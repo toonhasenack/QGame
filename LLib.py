@@ -64,6 +64,6 @@ class Leaderboard():
         self.ax.set_xlim(0, 2*winners["Times"].max())
 
         self.fig.savefig("main/static/Leaderboard.png")
-
+        print("AAAAA")
         plt.close()
         con.close()

@@ -69,6 +69,7 @@ def game_page(request, player_id):
     if request.method == 'POST' and not QG.winner:
         keys = request.POST.keys()
         idf = [key for key in keys][1]
+
         if int(idf[3]) == 1:
             player.left = True
             player.left_choice = base64.b64encode(
