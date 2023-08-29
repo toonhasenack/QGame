@@ -6,7 +6,7 @@ import pickle
 
 
 class Leaderboard():
-    def __init__(self, bgcolor=(0, 0, 95/255), lettercolor=(1, 1, 0)):
+    def __init__(self, bgcolor=(21/255, 66/255, 115/255), lettercolor=(1, 1, 1)):
         fig = plt.figure(figsize=(18, 12), facecolor=bgcolor)
         ax = plt.axes()
         ax.set_facecolor(bgcolor)
@@ -24,7 +24,7 @@ class Leaderboard():
         ax.set_title('Leaderboard', size=40, color=lettercolor)
 
         # Adjusting the layout
-        plt.tight_layout()
+        # plt.tight_layout()
         self.fig = fig
         self.ax = ax
         self.bgcolor = bgcolor
@@ -53,7 +53,7 @@ class Leaderboard():
                 winners.loc[names1.loc[i].lower(), "Times"] += 1/2
                 winners.loc[names2.loc[i].lower(), "Times"] += 1/2
 
-        winners = winners.sort_values(by="Times", ascending=True)
+        winners = winners.sort_values(by="Times", ascending=True).tail(10)
 
         # Adding labels to the bars
         for i, v in enumerate(winners["Times"]):

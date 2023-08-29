@@ -2,20 +2,66 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="10" />
+    <meta content="10" />
     <meta
-      name="viewport"
-      content="width=device-width, height=device-height, initial-scale=1.0"
+      name="”viewport”"
+      content="”width"
+      ="device-width,"
+      height="device-height,"
+      initial-scale="1.0,"
+      user-scalable="yes,"
+      maximum-scale="5.0″"
     />
     <title>QGame - Leaderboard</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
   </head>
   <body>
-    <img
-      class="leaderboard_img"
-      src="{% static 'Leaderboard.png' %}"
-      alt="Leaderboard"
-    />
+    <div
+      style="
+        text-align: center;
+        overflow: hidden;
+        display: inline-block;
+        width: 100vw;
+        height: 100vh;
+      "
+    >
+      <video width="device-width" height="device-height" id="Vid">
+        <source src="{% static 'test.mp4' %}" type=video/mp4>
+      </video>
+    </div>
+    <div
+      id="next"
+      style="text-align: center; overflow: hidden; display: inline-block"
+    >
+      <img
+        class="leaderboard_img"
+        src="{% static 'Leaderboard.png' %}"
+        alt="Leaderboard"
+      />
+    </div>
+
+    <script>
+      var v = document.getElementById("Vid");
+      v.autoplay = true;
+      v.load();
+      v.onplaying = function () {
+        document.body.style.overflow = "hidden";
+      };
+
+      // Executes only when the video ends
+      v.onended = function () {
+        // Enabling the scroller
+        document.body.style.overflow = "";
+
+        // Scrolling to the next element by
+        // linking to its Id
+        document.getElementById("next").scrollIntoView();
+
+        setTimeout(function () {
+          window.location.reload(1);
+        }, 10000);
+      };
+    </script>
   </body>
 </html>

@@ -2,7 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="”viewport”"
+      content="”width"
+      ="device-width,"
+      height="device-height,"
+      initial-scale="1.0,"
+      user-scalable="yes,"
+      maximum-scale="5.0″"
+    />
     <title>QGame - Quantum Tic Tac Toe</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
@@ -28,17 +36,21 @@
   </head>
   <body>
     <div class="banner" style="height: 15vh">
-      <div class="button" onclick="location.href='/'">Back</div>
-      <div
-        style="
-          flex-grow: 1;
-          height: 100%;
-          display: inline-block;
-          text-align: center;
-        "
-      >
-        <h1 class="banner_text">Quantum Tic Tac Toe</h1>
-      </div>
+      <table style="width: 100%">
+        <tc>
+          <td class="sub_banner" style="width: 10%" onclick="location.href='/'">
+            Back
+          </td>
+          <td class="sub_banner" style="width: 70%">Quantum Tic Tac Toe</td>
+          <td class="sub_banner" style="width: 20%">
+            <img
+              src="{%static 'mindef-logo.png'%}"
+              alt="mindef logo"
+              width="100%"
+            />
+          </td>
+        </tc>
+      </table>
     </div>
     <div style="width: 90px; height: 100%; display: inline-block"></div>
     <div class="banner" style="height: 10vh">
