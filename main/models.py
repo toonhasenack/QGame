@@ -14,3 +14,4 @@ class Player(models.Model):
     right_choice = models.BinaryField(max_length=100, default=b'\x08')
     winner = models.IntegerField(default=0)
     message = models.CharField(max_length=100)
+    new_id = models.IntegerField(default=0)

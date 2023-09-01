@@ -71,7 +71,7 @@ input {
 }
 
 .typewriter h1 {
-    font-size: 4vh;
+    font-size: 3vh;
     /* Adjust the height as needed */
     overflow: hidden;
     /* Ensures the content is not revealed until the animation */
@@ -133,6 +133,15 @@ input {
     text-align: center;
 }
 
+
+.game_not_won {
+    filter: blur(0vw);
+}
+
+.game_won {
+    filter: blur(1vw);
+}
+
 .game {
     width: 48vw;
     height: 25vw;
@@ -185,20 +194,95 @@ td button.button2 {
     animation: pulse 5s infinite;
 }
 
+td button.button3 {
+    border-radius: 10vh;
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-image: radial-gradient(circle at center, chartreuse, rgb(21, 66, 115));
+    animation: pulsec 1s infinite;
+    filter: blur(0.2vw);
+}
+
+td button.button4 {
+    border-radius: 10vh;
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-image: radial-gradient(circle at center, chartreuse, rgb(21, 66, 115));
+    animation: pulsed 1s infinite;
+    filter: blur(0.2vw);
+}
+
 @keyframes pulse {
     0% {
-        transform: scale(1);
         background-size: 10%;
     }
 
     50% {
-        transform: scale(0.9);
         background-size: 200%;
     }
 
     100% {
-        transform: scale(1);
         background-size: 10%;
+        
+    }
+}
+
+@keyframes pulsec {
+    0% {
+        transform: scale(1);
+        background-image: radial-gradient(circle at center, chartreuse, rgb(21, 66, 115));
+    }
+    
+    25% {
+        background-image: radial-gradient(circle at center, violet, rgb(21, 66, 115));
+    }
+
+    50% {
+        transform: scale(0.9);
+        background-image: radial-gradient(circle at center, chartreuse, rgb(21, 66, 115));
+    }
+
+
+    75% {
+        background-image: radial-gradient(circle at center, violet, rgb(21, 66, 115));
+    }
+
+    100% {
+        transform: scale(1);
+        background-image: radial-gradient(circle at center, chartreuse, rgb(21, 66, 115));
+        
+    }
+}
+
+@keyframes pulsed {
+    0% {
+        transform: scale(1);
+        background-image: radial-gradient(circle at center, violet, rgb(21, 66, 115));
+    }
+
+    25% {
+        
+        background-image: radial-gradient(circle at center, chartreuse, rgb(21, 66, 115));
+    }
+
+    50% {
+        transform: scale(0.9);
+        background-image: radial-gradient(circle at center, violet, rgb(21, 66, 115));
+    }
+
+    75% {
+        
+        background-image: radial-gradient(circle at center, chartreuse, rgb(21, 66, 115));
+    }
+
+    100% {
+        transform: scale(1);
+        background-image: radial-gradient(circle at center, violet, rgb(21, 66, 115));
+        
     }
 }
 
@@ -209,6 +293,22 @@ td button.button2 {
     font-family: "Poppins", sans-serif;
     font-size: 2vw;
     text-align: center;
+}
+
+.measure_div {
+    height: 15vh;
+    text-align: center;
+}
+
+.measure_button {
+    height: 100%;
+    width: 10vw;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 2vw;
+    vertical-align: middle;
+    background-color: rgb(21, 66, 115);
+    border-radius: 10px;
 }
 
 .p0 {

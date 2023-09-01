@@ -11,6 +11,7 @@
       user-scalable="yes,"
       maximum-scale="5.0″"
     />
+    <meta name="”apple-mobile-web-app-capable”" content="”yes" “ />
     <title>QGame - Quantum Tic Tac Toe</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
@@ -41,7 +42,14 @@
           <td class="sub_banner" style="width: 10%" onclick="location.href='/'">
             Back
           </td>
-          <td class="sub_banner" style="width: 70%">Quantum Tic Tac Toe</td>
+          <td
+            class="sub_banner"
+            style="width: 20%"
+            onclick="location.href='/game/{{play_again_id}}'"
+          >
+            Play Again
+          </td>
+          <td class="sub_banner" style="width: 50%">Quantum Tic Tac Toe</td>
           <td class="sub_banner" style="width: 20%">
             <img
               src="{%static 'mindef-logo.png'%}"
@@ -58,173 +66,183 @@
         <h1>{{message | safe }}</h1>
       </div>
     </div>
-    <div class="game">
-      <table border="1" class="game_table">
-        <tbody>
-          <tr>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{c.11}}" type="submit" name="btn111">
-                  <p class="table_text">{{a.11}}</p>
-                </button>
-              </form>
-            </td>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{c.12}}" type="submit" name="btn112">
-                  <p class="table_text">{{a.12}}</p>
-                </button>
-              </form>
-            </td>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{c.13}}" type="submit" name="btn113">
-                  <p class="table_text">{{a.13}}</p>
-                </button>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{c.21}}" type="submit" name="btn121">
-                  <p class="table_text">{{a.21}}</p>
-                </button>
-              </form>
-            </td>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{c.22}}" type="submit" name="btn122">
-                  <p class="table_text">{{a.22}}</p>
-                </button>
-              </form>
-            </td>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{c.23}}" type="submit" name="btn123">
-                  <p class="table_text">{{a.23}}</p>
-                </button>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{c.31}}" type="submit" name="btn131">
-                  <p class="table_text">{{a.31}}</p>
-                </button>
-              </form>
-            </td>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{c.32}}" type="submit" name="btn132">
-                  <p class="table_text">{{a.32}}</p>
-                </button>
-              </form>
-            </td>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{c.33}}" type="submit" name="btn133">
-                  <p class="table_text">{{a.33}}</p>
-                </button>
-              </form>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="game">
-      <table border="1" class="game_table">
-        <tbody>
-          <tr>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{d.11}}" type="submit" name="btn211">
-                  <p class="table_text">{{b.11}}</p>
-                </button>
-              </form>
-            </td>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{d.12}}" type="submit" name="btn212">
-                  <p class="table_text">{{b.12}}</p>
-                </button>
-              </form>
-            </td>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{d.13}}" type="submit" name="btn213">
-                  <p class="table_text">{{b.13}}</p>
-                </button>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{d.21}}" type="submit" name="btn221">
-                  <p class="table_text">{{b.21}}</p>
-                </button>
-              </form>
-            </td>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{d.22}}" type="submit" name="btn222">
-                  <p class="table_text">{{b.22}}</p>
-                </button>
-              </form>
-            </td>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{d.23}}" type="submit" name="btn223">
-                  <p class="table_text">{{b.23}}</p>
-                </button>
-              </form>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{d.31}}" type="submit" name="btn231">
-                  <p class="table_text">{{b.31}}</p>
-                </button>
-              </form>
-            </td>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{d.32}}" type="submit" name="btn232">
-                  <p class="table_text">{{b.32}}</p>
-                </button>
-              </form>
-            </td>
-            <td>
-              <form method="POST">
-                {% csrf_token %} {{ form.as_p }}
-                <button class="{{d.33}}" type="submit" name="btn233">
-                  <p class="table_text">{{b.33}}</p>
-                </button>
-              </form>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="{{game_class}}">
+      <div class="game">
+        <table border="1" class="game_table">
+          <tbody>
+            <tr>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{c.11}}" type="submit" name="btn111">
+                    <p class="table_text">{{a.11}}</p>
+                  </button>
+                </form>
+              </td>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{c.12}}" type="submit" name="btn112">
+                    <p class="table_text">{{a.12}}</p>
+                  </button>
+                </form>
+              </td>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{c.13}}" type="submit" name="btn113">
+                    <p class="table_text">{{a.13}}</p>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{c.21}}" type="submit" name="btn121">
+                    <p class="table_text">{{a.21}}</p>
+                  </button>
+                </form>
+              </td>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{c.22}}" type="submit" name="btn122">
+                    <p class="table_text">{{a.22}}</p>
+                  </button>
+                </form>
+              </td>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{c.23}}" type="submit" name="btn123">
+                    <p class="table_text">{{a.23}}</p>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{c.31}}" type="submit" name="btn131">
+                    <p class="table_text">{{a.31}}</p>
+                  </button>
+                </form>
+              </td>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{c.32}}" type="submit" name="btn132">
+                    <p class="table_text">{{a.32}}</p>
+                  </button>
+                </form>
+              </td>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{c.33}}" type="submit" name="btn133">
+                    <p class="table_text">{{a.33}}</p>
+                  </button>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="game">
+        <table border="1" class="game_table">
+          <tbody>
+            <tr>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{d.11}}" type="submit" name="btn211">
+                    <p class="table_text">{{b.11}}</p>
+                  </button>
+                </form>
+              </td>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{d.12}}" type="submit" name="btn212">
+                    <p class="table_text">{{b.12}}</p>
+                  </button>
+                </form>
+              </td>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{d.13}}" type="submit" name="btn213">
+                    <p class="table_text">{{b.13}}</p>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{d.21}}" type="submit" name="btn221">
+                    <p class="table_text">{{b.21}}</p>
+                  </button>
+                </form>
+              </td>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{d.22}}" type="submit" name="btn222">
+                    <p class="table_text">{{b.22}}</p>
+                  </button>
+                </form>
+              </td>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{d.23}}" type="submit" name="btn223">
+                    <p class="table_text">{{b.23}}</p>
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{d.31}}" type="submit" name="btn231">
+                    <p class="table_text">{{b.31}}</p>
+                  </button>
+                </form>
+              </td>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{d.32}}" type="submit" name="btn232">
+                    <p class="table_text">{{b.32}}</p>
+                  </button>
+                </form>
+              </td>
+              <td>
+                <form method="POST">
+                  {% csrf_token %} {{ form.as_p }}
+                  <button class="{{d.33}}" type="submit" name="btn233">
+                    <p class="table_text">{{b.33}}</p>
+                  </button>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <form method="POST" class="measure_div">
+          {% csrf_token %} {{ form.as_p }}
+          <button class="measure_button" type="submit" name="measure">
+            <p>MEASURE</p>
+          </button>
+        </form>
+      </div>
     </div>
   </body>
 </html>

@@ -26,7 +26,7 @@
         height: 100vh;
       "
     >
-      <video width="device-width" height="device-height" id="Vid">
+      <video width="100%" id="Vid">
         <source src="{% static 'test.mp4' %}" type=video/mp4>
       </video>
     </div>
@@ -60,7 +60,7 @@
 
         setTimeout(function () {
           window.location.reload(1);
-        }, 10000);
+        }, 60000);
       };
     </script>
   </body>

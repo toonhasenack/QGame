@@ -17,6 +17,8 @@ def main_page(request):
             name1 = form.cleaned_data['name1']
             name2 = form.cleaned_data['name2']
             player = Player.objects.create(name1=name1, name2=name2)
+            player.new_id = player.id
+            player.save()
             return redirect('game/' + str(player.id))
     else:
         form = PlayerForm()
@@ -42,6 +44,8 @@ def get_QG(player):
 
 
 def game_page(request, player_id):
+    measure = False
+
     player = get_object_or_404(Player, pk=player_id)
     names = [player.name1, player.name2]
     strings = [r"$|\uparrow\rangle$", r"$|\downarrow\rangle$"]
@@ -65,50 +69,70 @@ def game_page(request, player_id):
          '21': 'button0', '22': 'button0', '23': 'button0',
          '31': 'button0', '32': 'button0', '33': 'button0'}
 
+    game_class = "game_not_won"
+
     QG.check()
     if request.method == 'POST' and not QG.winner:
         keys = request.POST.keys()
         idf = [key for key in keys][1]
 
-        if int(idf[3]) == 1:
+        if player.left and player.right and idf == "measure":
+            measure = True
+
+        elif idf[3] == "1":
             player.left = True
             player.left_choice = base64.b64encode(
                 pickle.dumps([int(idf[4])-1, int(idf[5])-1]))
             player.save()
 
-        elif int(idf[3]) == 2:
+        elif idf[3] == "2":
             player.right = True
             player.right_choice = base64.b64encode(
                 pickle.dumps([int(idf[4])-1, int(idf[5])-1]))
             player.save()
 
         if player.left and player.right:
-            left_choice = pickle.loads(base64.b64decode(player.left_choice))
-            right_choice = pickle.loads(base64.b64decode(player.right_choice))
-            coords = np.vstack([left_choice, right_choice])
-            proceed = QG.step(coords)
-            if proceed:
-                QG.check()
-                set_QG(player, QG)
-                if QG.winner:
-                    if QG.winner == 1 or QG.winner == 2:
-                        player.message = f"The winner is <span class = 'p{QG.winner-1}'>{names[QG.winner-1]}</span> {strings[QG.winner - 1]}!"
+            if measure:
+                left_choice = pickle.loads(
+                    base64.b64decode(player.left_choice))
+                right_choice = pickle.loads(
+                    base64.b64decode(player.right_choice))
+                coords = np.vstack([left_choice, right_choice])
+                proceed = QG.step(coords)
+                if proceed:
+                    QG.check()
+                    set_QG(player, QG)
+                    if QG.winner:
+                        if QG.winner == 1 or QG.winner == 2:
+                            player.message = f"The winner is <span class = 'p{QG.winner-1}'>{names[QG.winner-1]}</span> {strings[QG.winner - 1]}!"
+                        else:
+                            player.message = f"It is a tie!"
+
+                        game_class = "game_won"
+                        new_player = Player.objects.create(
+                            name1=player.name1, name2=player.name2)
+                        player.new_id = new_player.pk
+
                     else:
-                        player.message = f"It is a tie!"
+                        player.message = f"It is the turn of <span class = 'p{player.player}'>{names[player.player]}</span> {strings[player.player]} to entangle two states."
+
                 else:
-                    player.message = f"It is the turn of <span class = 'p{player.player}'>{names[player.player]}</span> {strings[player.player]} to entangle two states."
+                    player.message = f"Please choose two valid options, <span class = 'p{player.player}'>{names[player.player]}</span>."
 
+                player.left = False
+                player.right = False
+                measure = False
             else:
-                player.message = f"Please choose two valid options, <span class = 'p{player.player}'>{names[player.player]}</span>."
-
-            player.left = False
-            player.right = False
-            player.save()
+                player.message = f"Happy? Please press the MEASURE button, <span class = 'p{player.player}'>{names[player.player]}</span>."
 
         else:
-            sides = ["right", "left"]
-            player.message = f"Please make your second choice on the {sides[int(idf[3])-1]} playing field, <span class = 'p{player.player}'>{names[player.player]}</span>."
-            player.save()
+            if player.left:
+                side = "right"
+            elif player.right:
+                side = "left"
+            player.message = f"Please make your second choice on the {side} playing field, <span class = 'p{player.player}'>{names[player.player]}</span>."
+
+        player.save()
 
     for i in range(3):
         for j in range(3):
@@ -127,7 +151,20 @@ def game_page(request, player_id):
                 b[str(i + 1) + str(j + 1)] = r"$|\downarrow\rangle$"
                 d[str(i + 1) + str(j + 1)] = "button2"
 
-    return render(request, 'game.html', {'message': player.message, 'a': a, 'b': b, 'c': c, 'd': d})
+    if player.left:
+        left_choice = pickle.loads(base64.b64decode(player.left_choice))
+        c[str(left_choice[0]+1) +
+          str(left_choice[1]+1)] = "button3"
+
+    if player.right:
+        right_choice = pickle.loads(base64.b64decode(player.right_choice))
+        d[str(right_choice[0]+1) +
+          str(right_choice[1]+1)] = "button4"
+
+    elif QG.winner:
+        game_class = "game_won"
+
+    return render(request, 'game.html', {'message': player.message, 'a': a, 'b': b, 'c': c, 'd': d, "game_class": game_class, "play_again_id": player.new_id})
 
 
 def leaderboard_page(request):
