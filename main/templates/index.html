@@ -18,12 +18,12 @@
   <body>
     <div style="width: 90px; height: 100%; display: inline-block"></div>
     <div style="text-align: center; overflow: hidden">
-      <video width="100%" autoplay loop controls>
+      <video id="Vid" width="100%" autoplay controls>
         <source src="{% static 'QGame_explained.mp4' %}" type=video/mp4>
       </video>
     </div>
     <div style="width: 100vw; height: 10px; overflow: hidden"></div>
-    <div style="width: 100vw">
+    <div id="next" style="width: 100vw">
       <div class="form">
         <form method="POST">
           {% csrf_token %} {{ form.as_p }}
@@ -31,5 +31,23 @@
         </form>
       </div>
     </div>
+    <script>
+      var v = document.getElementById("Vid");
+      v.autoplay = true;
+      v.load();
+      v.onplaying = function () {
+        document.body.style.overflow = "hidden";
+      };
+
+      // Executes only when the video ends
+      v.onended = function () {
+        // Enabling the scroller
+        document.body.style.overflow = "";
+
+        // Scrolling to the next element by
+        // linking to its Id
+        document.getElementById("next").scrollIntoView({ behavior: "smooth" });
+      };
+    </script>
   </body>
 </html>
