@@ -143,8 +143,8 @@ input {
 }
 
 .game {
-    width: 48vw;
-    height: 25vw;
+    width: 49%;
+    height: 50%;
     display: inline-block;
 }
 
@@ -160,7 +160,6 @@ input {
 }
 
 td {
-    width: 33%;
     height: 33%;
     border: none;
 }
@@ -227,7 +226,7 @@ td button.button4 {
 
     100% {
         background-size: 10%;
-        
+
     }
 }
 
@@ -236,7 +235,7 @@ td button.button4 {
         transform: scale(1);
         background-image: radial-gradient(circle at center, chartreuse, rgb(21, 66, 115));
     }
-    
+
     25% {
         background-image: radial-gradient(circle at center, violet, rgb(21, 66, 115));
     }
@@ -254,7 +253,7 @@ td button.button4 {
     100% {
         transform: scale(1);
         background-image: radial-gradient(circle at center, chartreuse, rgb(21, 66, 115));
-        
+
     }
 }
 
@@ -265,7 +264,7 @@ td button.button4 {
     }
 
     25% {
-        
+
         background-image: radial-gradient(circle at center, chartreuse, rgb(21, 66, 115));
     }
 
@@ -275,14 +274,14 @@ td button.button4 {
     }
 
     75% {
-        
+
         background-image: radial-gradient(circle at center, chartreuse, rgb(21, 66, 115));
     }
 
     100% {
         transform: scale(1);
         background-image: radial-gradient(circle at center, violet, rgb(21, 66, 115));
-        
+
     }
 }
 
@@ -305,7 +304,7 @@ td button.button4 {
     width: 10vw;
     color: white;
     font-family: "Poppins", sans-serif;
-    font-size: 2vw;
+    font-size: 1.5vw;
     vertical-align: middle;
     background-color: rgb(21, 66, 115);
     border-radius: 10px;
