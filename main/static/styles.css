@@ -60,7 +60,7 @@ input {
     position: absolute;
     width: 100%;
     text-align: center;
-    font-size: 5vh;
+    font-size: 5vw;
 }
 
 .typewriter {
@@ -71,7 +71,7 @@ input {
 }
 
 .typewriter h1 {
-    font-size: 3vh;
+    font-size: 2.5vw;
     /* Adjust the height as needed */
     overflow: hidden;
     /* Ensures the content is not revealed until the animation */
@@ -129,7 +129,7 @@ input {
 
 .sub_banner {
     height: 100%;
-    font-size: 5vh;
+    font-size: 3vw;
     text-align: center;
 }
 
@@ -295,13 +295,13 @@ td button.button4 {
 }
 
 .measure_div {
-    height: 15vh;
+    height: 10vh;
     text-align: center;
 }
 
 .measure_button {
     height: 100%;
-    width: 10vw;
+    width: 15vw;
     color: white;
     font-family: "Poppins", sans-serif;
     font-size: 1.5vw;

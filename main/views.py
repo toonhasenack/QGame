@@ -128,9 +128,10 @@ def game_page(request, player_id):
         else:
             if player.left:
                 side = "right"
+                player.message = f"Please make your second choice on the {side} playing field, <span class = 'p{player.player}'>{names[player.player]}</span>."
             elif player.right:
                 side = "left"
-            player.message = f"Please make your second choice on the {side} playing field, <span class = 'p{player.player}'>{names[player.player]}</span>."
+                player.message = f"Please make your second choice on the {side} playing field, <span class = 'p{player.player}'>{names[player.player]}</span>."
 
         player.save()
 
