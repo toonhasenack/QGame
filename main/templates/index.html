@@ -35,9 +35,6 @@
       var v = document.getElementById("Vid");
       v.autoplay = true;
       v.load();
-      v.onplaying = function () {
-        document.body.style.overflow = "hidden";
-      };
 
       // Executes only when the video ends
       v.onended = function () {
